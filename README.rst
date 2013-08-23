@@ -23,10 +23,6 @@ Here's a sample expected string::
 
 .. -> expected
 
-Note that the first line has a start line that begins and ends with
-tripple angle brackets. This signals to the matcher that it should
-check the text.
-
 Let's create a checker:
 
     >>> import zc.htmlchecker
@@ -237,7 +233,7 @@ s base:
 
 You may want to have some html examples checked with another
 checker. In that case, you can specify a prefix.  Only examples tyhat
-befin with the prefix will be checked with the HTML checker, and teh
+befin with the prefix will be checked with the HTML checker, and the
 prefix will be removed.  For example::
 
     >>> checker2 = zc.htmlchecker.HTMLChecker(FooChecker(), prefix="<>")
