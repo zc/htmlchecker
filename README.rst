@@ -7,6 +7,7 @@ like to ignore:
 
 - attribute order
 - extra attributes
+- extra classes
 - extra nodes
 
 zc.htmlchecker provides a checker object that can be used by itself,
@@ -35,14 +36,14 @@ You can call it's check method with expected and observed HTML:
 
     >>> checker.check(
     ... expected,
-    ... """<html><body><button x='1' class="mybutton">press me</button>
+    ... """<html><body><button x='1' class="widget mybutton">press me</button>
     ...          </body></html>""")
 
 If there's a match, then nothing is returned.  For there to ba a
 match, the expected output merely has to be unambiguously found in the
-observed output. In the above example, there was a single bodey tag,
-so it know how to do the match.  Note that whitespace differences were
-ignored, as were extra observerd attributes.
+observed output. In the above example, there was a single body tag,
+so it knew how to do the match.  Note that whitespace differences were
+ignored, as were extra observerd attributes and an extra class.
 
 When used as a doctest output checker, it's ``check_output`` method
 returns a boolean indicating whether there was a match:

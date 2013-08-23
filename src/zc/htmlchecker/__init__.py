@@ -101,13 +101,13 @@ def matches_(observed, expected, wild=False):
 
     for name, e_val in expected.attrs.items():
         if not isinstance(e_val, basestring):
-            [e_val] = e_val
+            e_val = ' '.join(e_val)
 
         o_val = observed.get(name)
         if not o_val:
             raise MatchError("missing "+name, expected, observed)
         if not isinstance(o_val, basestring):
-            [o_val] = o_val
+            o_val = ' '.join(o_val)
 
         if (e_val != o_val and not
             (re.match(r'^/.+/$', e_val) and re.match(e_val[1:-1], o_val))
