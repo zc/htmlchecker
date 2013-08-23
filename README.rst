@@ -23,10 +23,6 @@ Here's a sample expected string::
 
 .. -> expected
 
-Note that the first line has a start line that begins and ends with
-triple angle brackets. This signals to the matcher that it should
-check the text.
-
 Let's create a checker:
 
     >>> import zc.htmlchecker
