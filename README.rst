@@ -24,7 +24,7 @@ Here's a sample expected string::
 .. -> expected
 
 Note that the first line has a start line that begins and ends with
-tripple angle brackets. This signals to the matcher that it should
+triple angle brackets. This signals to the matcher that it should
 check the text.
 
 Let's create a checker:
@@ -32,20 +32,20 @@ Let's create a checker:
     >>> import zc.htmlchecker
     >>> checker = zc.htmlchecker.HTMLChecker()
 
-You can call it's check method with expected and observed HTML:
+You can call its check method with expected and observed HTML:
 
     >>> checker.check(
     ... expected,
     ... """<html><body><button x='1' class="widget mybutton">press me</button>
     ...          </body></html>""")
 
-If there's a match, then nothing is returned.  For there to ba a
+If there's a match, then nothing is returned.  For there to be a
 match, the expected output merely has to be unambiguously found in the
 observed output. In the above example, there was a single body tag,
 so it knew how to do the match.  Note that whitespace differences were
-ignored, as were extra observerd attributes and an extra class.
+ignored, as were extra observed attributes and an extra class.
 
-When used as a doctest output checker, it's ``check_output`` method
+When used as a doctest output checker, its ``check_output`` method
 returns a boolean indicating whether there was a match:
 
     >>> checker.check_output(
@@ -161,7 +161,7 @@ which button was the problem.  We can make its job easier using ids::
 
 .. -> expected
 
-Now we're looking for button odes with specific ids.
+Now we're looking for button nodes with specific ids.
 
     >>> checker.check(
     ... expected,
@@ -186,7 +186,7 @@ Now we're looking for button odes with specific ids.
 That's a lot more helpful.
 
 Speaking of wild card matches, sometimes you want to ignore
-intermediate nodes.  You can do this by using an elipsis at the top of
+intermediate nodes.  You can do this by using an ellipsis at the top of
 a node that has intermediate nodes you want to ignore::
 
   <form>
@@ -215,8 +215,8 @@ When looking for expected text, we basically do a wild-card match on
 the observed text.
 
 When used as a doctest checker, expected text that doesn't start with
-``<`` is checked with the default checker, or a checker you pass in a
-s base:
+``<`` is checked with the default checker, or a checker you pass in as
+base:
 
     >>> checker.check_output('1', '2', 0)
     False
@@ -236,8 +236,8 @@ s base:
     False
 
 You may want to have some html examples checked with another
-checker. In that case, you can specify a prefix.  Only examples tyhat
-befin with the prefix will be checked with the HTML checker, and teh
+checker. In that case, you can specify a prefix.  Only examples that
+begin with the prefix will be checked with the HTML checker, and the
 prefix will be removed.  For example::
 
     >>> checker2 = zc.htmlchecker.HTMLChecker(FooChecker(), prefix="<>")
