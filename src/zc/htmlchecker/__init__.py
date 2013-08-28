@@ -33,23 +33,28 @@ class MatchError(Exception):
 
 class HTMLChecker(doctest.OutputChecker):
 
-    def __init__(self, base=None, prefix=None):
+    def __init__(self, base=None, prefix=None, parser='html5lib'):
         if base is None:
             base = doctest.OutputChecker()
         self.base = base
         self.prefix = prefix
+        self.parser = parser
 
-    def _find(self, header, got):
-        header = header.split()
-        if '=' not in header[0]:
-            name = header.pop(0)
-        else:
-            name = None
-        attrs = dict(a.split('=') for a in header)
-        return BeautifulSoup(got).find_all(name, **attrs)
+    def _bs(self, want):
+        bs = BeautifulSoup(want, self.parser)
+        if self.parser == 'html5lib':
+            # html5lib adds body, head and html tags, which isn't what we want.
+            want = want.lower()
+            if '<body' not in want:
+                bs.body.unwrap()
+            if '<head' not in want:
+                bs.head.decompose()
+            if '<html' not in want:
+                bs.html.unwrap()
+        return bs
 
     def check(self, want, got):
-        matches_(BeautifulSoup(got), BeautifulSoup(want), wild=True)
+        matches_(self._bs(got), self._bs(want), wild=True)
 
     def applicable(self, want):
         if self.prefix:

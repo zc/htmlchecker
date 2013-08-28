@@ -13,7 +13,7 @@
 ##############################################################################
 name, version = 'zc.htmlchecker', '0'
 
-install_requires = ['setuptools', "BeautifulSoup4"]
+install_requires = ['setuptools', "BeautifulSoup4", 'html5lib']
 extras_require = dict(test=['manuel', 'mock', 'zope.testing'])
 
 entry_points = """
