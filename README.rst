@@ -263,3 +263,24 @@ prefix will be removed.  For example::
     Observed:
     <c>
     </c>
+
+HTMLChecker uses BeautifulSoup.  It uses the ``'html5lib'`` parser by
+default, but you can pass a different parser name.  You probably want
+to stere clear of the ``'html.parser'`` parser, as it's buggy:
+
+    >>> checker = zc.htmlchecker.HTMLChecker(parser='html.parser')
+    >>> checker.check('<input id="x">', '<input id="x"><input>')
+    Traceback (most recent call last):
+    ...
+    MatchError: Wrong number of children 1!=0
+    Expected:
+    <input id="x"/>
+    <BLANKLINE>
+    Observed:
+    <input id="x">
+     <input/>
+    </input>
+
+Here, ``'html.parser'`` decided that the input tags needed closing
+tags, even though the HTML input tag is empty.  This is likely in part
+because the underlying parser is an XHTML parser.
