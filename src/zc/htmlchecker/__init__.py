@@ -109,7 +109,7 @@ def matches_(observed, expected, wild=False):
             e_val = ' '.join(e_val)
 
         o_val = observed.get(name)
-        if not o_val:
+        if o_val is None:
             raise MatchError("missing "+name, expected, observed)
         if not isinstance(o_val, basestring):
             o_val = ' '.join(o_val)
@@ -131,8 +131,8 @@ def matches_(observed, expected, wild=False):
                     expected, observed)
 
     for enode in expected:
-        if (not enode.name) and enode.strip() == '...':
-            enode.replace_with('')
+        if (not enode.name) and enode.strip().split('\n')[0] == '...':
+            enode.replace_with(enode.split('...', 1)[1])
             wild = True
         break
 
