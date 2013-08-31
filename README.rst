@@ -358,3 +358,11 @@ to stere clear of the ``'html.parser'`` parser, as it's buggy:
 Here, ``'html.parser'`` decided that the input tags needed closing
 tags, even though the HTML input tag is empty.  This is likely in part
 because the underlying parser is an XHTML parser.
+
+Changes
+=======
+
+0.1.0 2013-08-31
+----------------
+
+Initial release.
